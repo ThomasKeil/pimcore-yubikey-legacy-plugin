@@ -120,7 +120,16 @@ class YubiKey_Plugin extends Pimcore_API_Plugin_Abstract implements Pimcore_API_
    * @deprecated
    */
   public function authenticateUser($username, $password)  {
-    return YubiKey_Authenticator::authenticate($username, $password);
+
+    $user = YubiKey_Authenticator::authenticate($username, $password);
+    if (! $user instanceof User) {
+      $user = YubiKey_RemoteAuthenticator::authenticate($username, $password);
+    }
+    if ($user instanceof User) {
+      return $user;
+    }
+
+    return null;
   }
 
   /**
