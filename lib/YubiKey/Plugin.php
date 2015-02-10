@@ -144,4 +144,14 @@ class YubiKey_Plugin extends Pimcore_API_Plugin_Abstract implements Pimcore_API_
     return "/YubiKey/texts/de.csv";
   }
 
+  public function getCssPaths() {
+    $paths = parent::getCssPaths();
+    $config = YubiKey_Config::getInstance();
+    $data = $config->getData();
+    if ($data["yubikey"]["local"]["showicon"] == 1) {
+      $paths[] = "/plugins/YubiKey/static/css/login.css";
+    }
+    return $paths;
+  }
+
 }
