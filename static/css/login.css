@@ -1,6 +1,7 @@
 #loginform button {
     background-image: url(/plugins/YubiKey/static/icons/yubikey.png);
     background-repeat: no-repeat;
+    background-position: 10px, 8px;
     background-position-x: 10px;
     background-position-y: 8px;
 }
